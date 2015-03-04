@@ -3,7 +3,6 @@
 var request = require("request");
 var args = require('minimist')(process.argv);
 var moment = require('moment');
-var fs = require("fs");
 
 var header = "";
 var pending = null;
@@ -51,9 +50,7 @@ function get311(start, end){
 			//console.log("Got " + start.format("MM/DD/YYYY h:mm:ss A") + " to " + end.format("MM/DD/YYYY h:mm:ss A") + "!");
 			//console.log("http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=serviceorderdate&from=" + start.format("MM/DD/YYYY h:mm:ss A") + "&to=" + moment(end - moment.duration(1, 'days')).format("MM/DD/YYYY h:mm:ss A") + "&dataset=SRC&datasetid=4&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=1");
 			complete++;
-			
-			fs.writeFile(complete + "party.csv", body);
-			
+	
 			header = (body.slice(0, body.indexOf("\n")));
 			body = body.substring(body.indexOf("\n") + 1);
 			text += body;
